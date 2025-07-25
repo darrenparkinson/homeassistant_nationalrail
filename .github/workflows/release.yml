@@ -1,34 +1,30 @@
-name: Release
+name: Create Release
 
 on:
   push:
     tags:
       - 'v*'
 
-permissions:
-  contents: write
-
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-        
+      
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: |
-            ## National Rail UK Home Assistant Component
+            National Rail UK Home Assistant Component
             
-            ### What's New
-            - National Rail UK integration for Home Assistant
-            - Lovelace card for displaying train departures
-            - Support for the new Rail Data API
-            
-            ### Installation
-            Install via HACS or manually following the README instructions.
+            Features:
+            - National Rail UK integration
+            - Lovelace card for train departures
+            - Support for Rail Data API
           draft: false
           prerelease: false 
