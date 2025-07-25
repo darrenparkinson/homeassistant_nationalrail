@@ -2,7 +2,7 @@
 
 [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=darrenparkinson&repository=homeassistant_nationalrail&category=integration)
 
-This is a Home Assistant integration for the UK National Rail API that allows you to monitor train departures and arrivals at UK railway stations.
+This is a Home Assistant integration for the UK National Rail API that allows you to monitor train departures and arrivals at UK railway stations. This integration uses the new Rail Data API and is inspired by the original work by [jfparis](https://github.com/jfparis/homeassistant_nationalrail/).
 
 ## Features
 
@@ -11,7 +11,7 @@ This is a Home Assistant integration for the UK National Rail API that allows yo
 - Configurable time windows and number of results
 - Automatic updates every 5 minutes
 - Rich sensor attributes with detailed train information
-- **Lovelace Card**: Simple table display for dashboards
+- **Lovelace Card**: Simple table display for dashboards (available in separate repository)
 
 ## Installation
 
@@ -61,6 +61,13 @@ This is a Home Assistant integration for the UK National Rail API that allows yo
 - Filter CRS: `WYB` (Weybridge)
 - Filter Type: `to`
 - This will show only trains from Waterloo to Weybridge
+
+## Repository Structure
+
+This repository contains the Home Assistant integration only. The Lovelace card is available in a separate repository for HACS compatibility:
+
+- **Integration**: [github.com/darrenparkinson/homeassistant_nationalrail](https://github.com/darrenparkinson/homeassistant_nationalrail) (this repository)
+- **Lovelace Card**: [github.com/darrenparkinson/ha-nationalrailuk-card](https://github.com/darrenparkinson/ha-nationalrailuk-card)
 
 ## Lovelace Card
 
@@ -199,4 +206,5 @@ This project is licensed under the MIT License.
 - Original component by [jfparis](https://github.com/jfparis/homeassistant_nationalrail/) - this component is inspired by their work
 - Updated for new Rail Data API
 - Station data from National Rail
-- **Repository**: [darrenparkinson/homeassistant_nationalrail](https://github.com/darrenparkinson/homeassistant_nationalrail) 
+- **Repository**: [darrenparkinson/homeassistant_nationalrail](https://github.com/darrenparkinson/homeassistant_nationalrail)
+- **Lovelace Card**: [darrenparkinson/ha-nationalrailuk-card](https://github.com/darrenparkinson/ha-nationalrailuk-card) 
