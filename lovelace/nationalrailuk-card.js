@@ -65,9 +65,6 @@ class NationalRailUKCard extends HTMLElement {
         }
         
         .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
           margin-bottom: 16px;
           font-size: 16px;
           font-weight: 500;
@@ -78,22 +75,6 @@ class NationalRailUKCard extends HTMLElement {
           margin: 0;
           font-size: 18px;
           font-weight: 600;
-        }
-        
-        .status {
-          font-size: 12px;
-          padding: 4px 8px;
-          border-radius: 12px;
-          background: var(--primary-color, #03a9f4);
-          color: white;
-        }
-        
-        .status.available {
-          background: #4caf50;
-        }
-        
-        .status.unavailable {
-          background: #f44336;
         }
         
         .table {
@@ -174,17 +155,16 @@ class NationalRailUKCard extends HTMLElement {
         }
       </style>
       
-      <ha-card>
-        <div class="card">
-          <div class="header">
-            <div class="title">${this._config ? this._config.title : 'Train Departures'}</div>
-            <div class="status" id="status">Loading...</div>
+              <ha-card>
+          <div class="card">
+            <div class="header">
+              <div class="title">${this._config ? this._config.title : 'Train Departures'}</div>
+            </div>
+            <div id="content">
+              <div class="loading">Loading departures...</div>
+            </div>
           </div>
-          <div id="content">
-            <div class="loading">Loading departures...</div>
-          </div>
-        </div>
-      </ha-card>
+        </ha-card>
     `;
   }
 
@@ -198,27 +178,19 @@ class NationalRailUKCard extends HTMLElement {
     if (!this._hass || !this._config) return;
     
     const entity = this._hass.states[this._config.entity];
-    const statusElement = this.shadowRoot.getElementById('status');
     const contentElement = this.shadowRoot.getElementById('content');
 
-    if (!statusElement || !contentElement) return;
+    if (!contentElement) return;
 
     if (!entity) {
-      statusElement.textContent = 'Entity not found';
-      statusElement.className = 'status unavailable';
       contentElement.innerHTML = '<div class="error">Entity not found</div>';
       return;
     }
 
     if (entity.state === 'unavailable') {
-      statusElement.textContent = 'Unavailable';
-      statusElement.className = 'status unavailable';
       contentElement.innerHTML = '<div class="error">Sensor unavailable</div>';
       return;
     }
-
-    statusElement.textContent = entity.state;
-    statusElement.className = 'status available';
 
     const trains = entity.attributes.trains || [];
     
