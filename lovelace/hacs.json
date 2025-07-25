@@ -1,0 +1,7 @@
+{
+  "name": "National Rail UK Card",
+  "render_readme": true,
+  "domains": ["frontend"],
+  "homeassistant": "2023.8.0",
+  "iot_class": "Local Push"
+} 

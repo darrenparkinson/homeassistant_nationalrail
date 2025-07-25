@@ -9,6 +9,7 @@ This is a Home Assistant integration for the UK National Rail API that allows yo
 - Configurable time windows and number of results
 - Automatic updates every 5 minutes
 - Rich sensor attributes with detailed train information
+- **Lovelace Card**: Simple table display for dashboards
 
 ## Installation
 
@@ -58,6 +59,40 @@ This is a Home Assistant integration for the UK National Rail API that allows yo
 - Filter CRS: `WYB` (Weybridge)
 - Filter Type: `to`
 - This will show only trains from Waterloo to Weybridge
+
+## Lovelace Card
+
+This integration includes a custom Lovelace card for displaying train departures in a simple table format.
+
+### Card Installation
+
+The card can be installed via HACS or manually:
+
+**HACS (Recommended):**
+1. Add this repository as a custom repository in HACS
+2. Search for "National Rail UK Card" in the Frontend section
+3. Click "Download"
+
+**Manual Installation:**
+1. Copy `lovelace/nationalrailuk-card.js` to your `config/www/` directory
+2. Add to your Lovelace resources:
+```yaml
+lovelace:
+  resources:
+    - url: /local/nationalrailuk-card.js
+      type: module
+```
+
+### Card Usage
+
+```yaml
+type: custom:nationalrailuk-card
+entity: sensor.train_schedule_wat_all
+title: "London Waterloo"
+max_rows: 8
+```
+
+See `lovelace/README.md` for detailed card documentation and examples.
 
 ## Sensor Data
 

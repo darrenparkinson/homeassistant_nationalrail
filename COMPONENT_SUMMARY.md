@@ -6,6 +6,8 @@ I've created a complete Home Assistant component for the UK National Rail API in
 
 **Repository**: [darrenparkinson/homeassistant_nationalrail](https://github.com/darrenparkinson/homeassistant_nationalrail)
 
+The project includes both a backend integration and a frontend Lovelace card component.
+
 ### Key Updates from Original Component
 
 1. **New API Base URL**: Updated to use `https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepartureBoard/{station_code}`
@@ -27,10 +29,17 @@ custom_components/nationalrailuk/
 ├── manifest.json        # Component metadata
 └── translations/
     └── en.json         # English translations
+
+lovelace/
+├── nationalrailuk-card.js    # Lovelace card component
+├── hacs.json                 # HACS configuration
+├── README.md                 # Card documentation
+└── example-dashboard.yaml    # Example dashboard
 ```
 
 ## Features
 
+### Backend Integration
 - ✅ **Config Flow Integration**: Easy setup through Home Assistant UI
 - ✅ **Real-time Data**: Fetches live departure board information
 - ✅ **Filtering Support**: Filter by destination/origin station
@@ -39,6 +48,14 @@ custom_components/nationalrailuk/
 - ✅ **Error Handling**: Proper error handling and logging
 - ✅ **Rate Limiting**: Respects API rate limits
 - ✅ **Station Database**: Includes comprehensive station codes
+
+### Frontend Card
+- ✅ **Simple Table Display**: Clean, compact table showing departures
+- ✅ **Status Indicators**: Color-coded status for on-time, delayed, cancelled
+- ✅ **Configurable**: Customize title, rows, filtering options
+- ✅ **Responsive Design**: Adapts to different screen sizes
+- ✅ **Real-time Updates**: Automatically updates when sensor data changes
+- ✅ **HACS Compatible**: Easy installation via HACS
 
 ## Installation
 
@@ -146,6 +163,7 @@ automation:
 
 ## Files Created
 
+### Backend Integration
 1. **`custom_components/nationalrailuk/`** - Complete Home Assistant component
 2. **`README.md`** - Comprehensive documentation
 3. **`API_DIFFERENCES.md`** - API migration guide
@@ -153,6 +171,12 @@ automation:
 5. **`requirements.txt`** - Python dependencies
 6. **`install.sh`** - Installation script
 7. **`env.example`** - Environment template
+
+### Frontend Card
+8. **`lovelace/nationalrailuk-card.js`** - Lovelace card component
+9. **`lovelace/hacs.json`** - HACS configuration
+10. **`lovelace/README.md`** - Card documentation
+11. **`lovelace/example-dashboard.yaml`** - Example dashboard configuration
 
 ## Next Steps
 
