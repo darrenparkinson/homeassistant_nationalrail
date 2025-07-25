@@ -64,37 +64,23 @@ This is a Home Assistant integration for the UK National Rail API that allows yo
 
 ## Lovelace Card
 
-This integration includes a custom Lovelace card for displaying train departures in a simple table format.
+A custom Lovelace card is available for displaying train departures in a simple table format.
 
 ### Card Installation
 
-The card can be installed via HACS or manually:
+The card is available in a separate repository and can be installed via HACS:
 
-**HACS (Recommended):**
-1. Add this repository as a custom repository in HACS
-2. Search for "National Rail UK Card" in the Frontend section
-3. Click "Download"
-
-**Manual Installation:**
-1. Copy `lovelace/nationalrailuk-card.js` to your `config/www/` directory
-2. Add to your Lovelace resources:
-```yaml
-lovelace:
-  resources:
-    - url: /local/nationalrailuk-card.js
-      type: module
-```
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=darrenparkinson&repository=ha-nationalrailuk-card&category=plugin)
 
 ### Card Usage
 
 ```yaml
 type: custom:nationalrailuk-card
-entity: sensor.train_schedule_wat_all
-title: "London Waterloo"
-max_rows: 8
+entity: sensor.national_rail_uk_your_station
+title: "Train Departures"
 ```
 
-See `lovelace/README.md` for detailed card documentation and examples.
+For detailed card documentation and examples, see the [card repository](https://github.com/darrenparkinson/ha-nationalrailuk-card).
 
 ## Sensor Data
 
