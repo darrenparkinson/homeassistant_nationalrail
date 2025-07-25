@@ -134,21 +134,24 @@ class NationalRailUKCard extends HTMLElement {
         
         .status-cell {
           text-align: center;
+          font-weight: 600;
+          font-size: 14px;
         }
         
-        .status-on-time {
-          color: #4caf50;
-          font-weight: 600;
+        .status-cell.status-on-time {
+          color: #2e7d32 !important;
         }
         
-        .status-delayed {
-          color: #ff9800;
-          font-weight: 600;
+        .status-cell.status-delayed {
+          color: #ef6c00 !important;
         }
         
-        .status-cancelled {
-          color: #f44336;
-          font-weight: 600;
+        .status-cell.status-cancelled {
+          color: #c62828 !important;
+        }
+        
+        .status-cell.status-early {
+          color: #1b5e20 !important;
         }
         
         .no-trains {
@@ -278,11 +281,14 @@ class NationalRailUKCard extends HTMLElement {
       const destination = this.getDestination(train);
       const status = this.getStatus(train);
 
+      // Debug logging
+      console.log('Train status:', status);
+
       tableHTML += `
         <tr>
           <td class="time">${scheduledTime}</td>
           <td class="destination" title="${destination}">${destination}</td>
-          <td class="status-cell ${status.class}">${status.text}</td>
+          <td class="status-cell ${status.class}" style="color: ${status.class === 'status-cancelled' ? '#c62828' : status.class === 'status-delayed' ? '#ef6c00' : '#2e7d32'}; font-weight: 600;">${status.text}</td>
         </tr>
       `;
     });
@@ -299,17 +305,29 @@ class NationalRailUKCard extends HTMLElement {
   }
 
   getStatus(train) {
-    if (train.isCancelled) {
+    // Check if train is cancelled
+    if (train.isCancelled || train.etd === 'Cancelled') {
       return { text: 'Cancelled', class: 'status-cancelled' };
     }
     
-    if (this.isDelayed(train)) {
+    // Check if train is on time (string value)
+    if (train.etd === 'On time') {
+      return { text: 'On time', class: 'status-on-time' };
+    }
+    
+    // Check if train is delayed or early (time values)
+    if (train.etd && train.std && train.etd !== train.std && train.etd !== 'On time') {
       const scheduled = this.parseTime(train.std);
       const expected = this.parseTime(train.etd);
-      const delay = expected - scheduled;
       
-      if (delay > 0) {
-        return { text: `+${delay}min`, class: 'status-delayed' };
+      if (scheduled > 0 && expected > 0) {
+        const difference = expected - scheduled;
+        
+        if (difference > 0) {
+          return { text: `+${difference}min`, class: 'status-delayed' };
+        } else if (difference < 0) {
+          return { text: `${difference}min`, class: 'status-early' };
+        }
       }
     }
     
@@ -318,12 +336,14 @@ class NationalRailUKCard extends HTMLElement {
 
   isDelayed(train) {
     if (!train.std || !train.etd) return false;
+    if (train.etd === 'On time') return false;
+    if (train.etd === 'Cancelled') return false;
     if (train.std === train.etd) return false;
     
     const scheduled = this.parseTime(train.std);
     const expected = this.parseTime(train.etd);
     
-    return expected !== scheduled;
+    return scheduled > 0 && expected > 0 && expected > scheduled;
   }
 
   parseTime(timeStr) {
