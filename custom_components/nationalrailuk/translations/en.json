@@ -1,0 +1,44 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "name": "Name",
+          "api_key": "API Key",
+          "station_code": "Station Code (CRS)",
+          "filter_crs": "Filter CRS (Optional)",
+          "filter_type": "Filter Type",
+          "num_rows": "Number of Rows",
+          "time_window": "Time Window (minutes)",
+          "time_offset": "Time Offset (minutes)"
+        },
+        "description": "Enter your National Rail API credentials and station information.",
+        "title": "National Rail UK"
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to National Rail API"
+    },
+    "abort": {
+      "already_configured": "Device is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "name": "Name",
+          "api_key": "API Key",
+          "station_code": "Station Code (CRS)",
+          "filter_crs": "Filter CRS (Optional)",
+          "filter_type": "Filter Type",
+          "num_rows": "Number of Rows",
+          "time_window": "Time Window (minutes)",
+          "time_offset": "Time Offset (minutes)"
+        },
+        "description": "Update your National Rail configuration.",
+        "title": "National Rail UK Options"
+      }
+    }
+  }
+} 
