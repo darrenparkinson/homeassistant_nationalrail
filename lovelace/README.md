@@ -1,5 +1,7 @@
 # National Rail UK Card
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=darrenparkinson&repository=homeassistant_nationalrail&category=plugin)
+
 A simple Lovelace card for displaying train departures from the National Rail UK Home Assistant integration.
 
 ## Features
