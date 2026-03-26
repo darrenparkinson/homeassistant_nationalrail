@@ -43,6 +43,7 @@ This is a Home Assistant integration for the UK National Rail API that allows yo
 - **Number of Rows**: How many services to return (1-50, default: 10)
 - **Time Window**: How far into the future to look for services in minutes (1-300, default: 120)
 - **Time Offset**: Offset from current time in minutes (-60 to 60, default: 0)
+- **Get Full Details**: If true, the integration will retrieve full details on future and previous train stops on each route.  Increases the data size, but gives additional content to show.
 
 ## Usage Examples
 

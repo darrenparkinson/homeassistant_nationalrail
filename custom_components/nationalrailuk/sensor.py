@@ -16,9 +16,11 @@ from homeassistant.util import dt as dt_util
 
 from .const import (
     BASE_URL,
+    BASE_URL_DETAILS,
     CONF_API_KEY,
     CONF_FILTER_CRS,
     CONF_FILTER_TYPE,
+    CONF_GET_FULL_DETAILS,
     CONF_NUM_ROWS,
     CONF_STATION_CODE,
     CONF_TIME_OFFSET,
@@ -51,6 +53,7 @@ async def async_setup_entry(
                 config.get(CONF_NUM_ROWS, 10),
                 config.get(CONF_TIME_WINDOW, 120),
                 config.get(CONF_TIME_OFFSET, 0),
+                config.get(CONF_GET_FULL_DETAILS, False),
             )
         ],
         True,
@@ -70,6 +73,7 @@ class NationalRailUKSensor(SensorEntity):
         num_rows: int,
         time_window: int,
         time_offset: int,
+        get_full_details: bool = False,
     ) -> None:
         """Initialize the sensor."""
         self._config_entry = config_entry
@@ -80,6 +84,7 @@ class NationalRailUKSensor(SensorEntity):
         self._num_rows = num_rows
         self._time_window = time_window
         self._time_offset = time_offset
+        self._get_full_details = get_full_details
         
         # Create unique ID
         if self._filter_crs:
@@ -121,7 +126,8 @@ class NationalRailUKSensor(SensorEntity):
 
     async def _fetch_departure_board(self) -> dict[str, Any] | None:
         """Fetch departure board data from the API."""
-        url = f"{BASE_URL}/{self._station_code}"
+        base = BASE_URL_DETAILS if self._get_full_details else BASE_URL
+        url = f"{base}/{self._station_code}"
         
         params = {
             "numRows": self._num_rows,
