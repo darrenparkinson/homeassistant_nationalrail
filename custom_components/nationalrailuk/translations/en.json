@@ -10,7 +10,8 @@
           "filter_type": "Filter Type",
           "num_rows": "Number of Rows",
           "time_window": "Time Window (minutes)",
-          "time_offset": "Time Offset (minutes)"
+          "time_offset": "Time Offset (minutes)",
+          "get_full_details": "Get Full Details"
         },
         "description": "Enter your National Rail API credentials and station information.",
         "title": "National Rail UK"
@@ -34,7 +35,8 @@
           "filter_type": "Filter Type",
           "num_rows": "Number of Rows",
           "time_window": "Time Window (minutes)",
-          "time_offset": "Time Offset (minutes)"
+          "time_offset": "Time Offset (minutes)",
+          "get_full_details": "Get Full Details"
         },
         "description": "Update your National Rail configuration.",
         "title": "National Rail UK Options"

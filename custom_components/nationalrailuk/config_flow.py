@@ -17,11 +17,13 @@ from .const import (
     CONF_API_KEY,
     CONF_FILTER_CRS,
     CONF_FILTER_TYPE,
+    CONF_GET_FULL_DETAILS,
     CONF_NUM_ROWS,
     CONF_STATION_CODE,
     CONF_TIME_OFFSET,
     CONF_TIME_WINDOW,
     DEFAULT_FILTER_TYPE,
+    DEFAULT_GET_FULL_DETAILS,
     DEFAULT_NUM_ROWS,
     DEFAULT_TIME_OFFSET,
     DEFAULT_TIME_WINDOW,
@@ -80,6 +82,7 @@ class NationalRailUKConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     vol.Optional(CONF_TIME_OFFSET, default=DEFAULT_TIME_OFFSET): vol.All(
                         vol.Coerce(int), vol.Range(min=-60, max=60)
                     ),
+                    vol.Optional(CONF_GET_FULL_DETAILS, default=DEFAULT_GET_FULL_DETAILS): bool,
                 }
             ),
             errors=errors,
