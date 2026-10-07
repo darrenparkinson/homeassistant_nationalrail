@@ -17,5 +17,5 @@ DEFAULT_FILTER_TYPE = "to"
 
 FILTER_TYPES = ["to", "from"]
 
-BASE_URL = "https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepartureBoard"
-USER_AGENT = "ParkRail/1.1" 
+BASE_URL = "https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120/GetDepBoardWithDetails"
+USER_AGENT = "ParkRail/1.1"
